@@ -1,0 +1,11 @@
+github.com:
+  enterprise:
+    orgs:
+      - opsivist
+      - odoo
+    private: True
+  "*":
+    orgs:
+      - opsivist
+      - OCA
+      - odoo
