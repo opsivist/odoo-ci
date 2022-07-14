@@ -7,10 +7,12 @@ ENV LANG=C.UTF-8 \
 
 RUN set -x \
   && apt-get update \
+  && apt-get dist-upgrade -y \
   && apt-get install -y software-properties-common \
   && add-apt-repository -y ppa:deadsnakes/ppa \
   && apt-get install -y --no-install-recommends \
     ca-certificates \
+    build-essential \
     git \
     mercurial \
     wget \
@@ -19,18 +21,25 @@ RUN set -x \
     make \
     python \
     python3 \
+    python3-dev \
     python3-venv \
     python3.5 \
+    python3.5-dev \
     python3.5-venv \
     python3.6 \
+    python3.6-dev \
     python3.6-venv \
     python3.7 \
+    python3.7-dev \
     python3.7-venv \
     python3.8 \
+    python3.8-dev \
     python3.8-venv \
     python3.9 \
+    python3.9-dev \
     python3.9-venv \
     python3.10 \
+    python3.10-dev \
     python3.10-venv \
     postgresql-client \
     # expect provides the unbuffer utility
