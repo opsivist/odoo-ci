@@ -59,7 +59,7 @@ RUN set -x \
   # wkhtmltopdf
   && wget -q -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb \
   && echo "ad0264869fe40ccfb91c32e9be7318bfabf3864f6a8a15567f7a38afe4a9a932 /tmp/wkhtmltox.deb" | sha256sum -c - \
-  && apt -y install /tmp/wkhtmltox.deb \
+  && apt-get -y install /tmp/wkhtmltox.deb \
   && rm -f /tmp/wkhtmltox.deb \
   # cleanup
   && rm -fr /var/lib/apt/lists/*
