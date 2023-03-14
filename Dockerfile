@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # some environment variables
 ENV LANG=C.UTF-8 \
@@ -19,16 +19,9 @@ RUN set -x \
     openssh-client \
     rsync \
     make \
-    python \
     python3 \
     python3-dev \
     python3-venv \
-    python3.5 \
-    python3.5-dev \
-    python3.5-venv \
-    python3.6 \
-    python3.6-dev \
-    python3.6-venv \
     python3.7 \
     python3.7-dev \
     python3.7-venv \
@@ -41,6 +34,9 @@ RUN set -x \
     python3.10 \
     python3.10-dev \
     python3.10-venv \
+    python3.11 \
+    python3.11-dev \
+    python3.11-venv \
     postgresql-client \
     # expect provides the unbuffer utility
     tcl \
@@ -57,9 +53,9 @@ RUN set -x \
     # gettext to manipulate .pot, .po files
     gettext \
   # wkhtmltopdf
-  && wget -q -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb \
-  && echo "ad0264869fe40ccfb91c32e9be7318bfabf3864f6a8a15567f7a38afe4a9a932 /tmp/wkhtmltox.deb" | sha256sum -c - \
-  && apt -y install /tmp/wkhtmltox.deb \
+  && wget -q -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb \
+  && echo "ee88d74834bdec650f7432c7d3ef1c981e42ae7a762a75a01f7f5da59abc18d5 /tmp/wkhtmltox.deb" | sha256sum -c - \
+  && apt-get -y install /tmp/wkhtmltox.deb \
   && rm -f /tmp/wkhtmltox.deb \
   # cleanup
   && rm -fr /var/lib/apt/lists/*
