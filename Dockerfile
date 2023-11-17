@@ -22,6 +22,12 @@ RUN set -x \
     python3 \
     python3-dev \
     python3-venv \
+    python3.8 \
+    python3.8-dev \
+    python3.8-venv \
+    python3.9 \
+    python3.9-dev \
+    python3.9-venv \
     python3.10 \
     python3.10-dev \
     python3.10-venv \
