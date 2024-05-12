@@ -64,22 +64,18 @@ RUN python3 -m venv /opt/pipx/venv \
     && /opt/pipx/venv/bin/pip install --no-cache-dir pipx \
     && ln -s /opt/pipx/venv/bin/pipx /usr/local/bin/
 
-# We don't use the ubuntu virtualenv package because it unbundles pip dependencies
-# in virtualenvs it create.
-RUN pipx install --pip-args="--no-cache-dir" virtualenv
+# Install python tools
+RUN pipx install --pip-args="--no-cache-dir" \
+    acsoo \
+    git-aggregator \
+    git-autoshare \
+    manifestoo \
+    pip-deepfreeze \
+    pre-commit \
+    virtualenv
 
-# git-autoshare
-RUN pipx install --pip-args="--no-cache-dir" "git-autoshare>=1.0.0b4"
 COPY git-wrapper /usr/local/bin/git
-
-# manifestoo
-RUN pipx install --pip-args="--no-cache-dir" "manifestoo>=0.4.0"
-
-# acsoo
-RUN pipx install --pip-args="--no-cache-dir" "acsoo"
-
-# pip-deepfreeze
-RUN pipx install --pip-args="--no-cache-dir" "pip-deepfreeze"
+COPY git-autoshare.yml /root/.config/git-autoshare/repos.yml
 
 # avoid potential race conditions in creating these directories
 RUN mkdir -p \
@@ -87,11 +83,9 @@ RUN mkdir -p \
   /root/.local/share/Odoo/filestore \
   /root/.local/share/Odoo/sessions
 
-# make sure directories in /home/gitlab-runner have adequate owner and permissions
+# make sure directories in /root have adequate owner and permissions
 RUN mkdir -p \
   /root/.cache \
   /root/.config \
   /root/.ssh \
   && chmod 700 /root/.ssh
-
-COPY git-autoshare.yml /root/.config/git-autoshare/repos.yml
