@@ -75,34 +75,23 @@ COPY git-wrapper /usr/local/bin/git
 # manifestoo
 RUN pipx install --pip-args="--no-cache-dir" "manifestoo>=0.4.0"
 
-# create gitlab-runner user, and do the rest of config using that user
-RUN useradd --shell /bin/bash -m gitlab-runner -c ""
-USER gitlab-runner
-ENV PIPX_BIN_DIR=/home/gitlab-runner/.local/bin
-ENV PIPX_HOME=/home/gitlab-runner/.local/pipx
-ENV PATH=/home/gitlab-runner/.local/bin:$PATH
+# acsoo
+RUN pipx install --pip-args="--no-cache-dir" "acsoo"
 
-# set git user.name and user.email so the runner can git push
-RUN git config --global user.email "gitlab@opsivist.io" \
-  && git config --global user.name "GitLab"
-
-# disable git safe repository detection, because GitLab CI checks out as root,
-# and we run as gitlab-runner
-RUN git config --global --add safe.directory '*'
+# pip-deepfreeze
+RUN pipx install --pip-args="--no-cache-dir" "pip-deepfreeze"
 
 # avoid potential race conditions in creating these directories
 RUN mkdir -p \
-  /home/gitlab-runner/.local/share/Odoo/addons \
-  /home/gitlab-runner/.local/share/Odoo/filestore \
-  /home/gitlab-runner/.local/share/Odoo/sessions
+  /root/.local/share/Odoo/addons \
+  /root/.local/share/Odoo/filestore \
+  /root/.local/share/Odoo/sessions
 
 # make sure directories in /home/gitlab-runner have adequate owner and permissions
 RUN mkdir -p \
-  /home/gitlab-runner/.cache \
-  /home/gitlab-runner/.config \
-  /home/gitlab-runner/.ssh \
-  && chmod 700 /home/gitlab-runner/.ssh
+  /root/.cache \
+  /root/.config \
+  /root/.ssh \
+  && chmod 700 /root/.ssh
 
-COPY git-autoshare.yml /home/gitlab-runner/.config/git-autoshare/repos.yml
-
-COPY --chown=gitlab-runner --chmod=644 ssh_config /home/gitlab-runner/.ssh/config
+COPY git-autoshare.yml /root/.config/git-autoshare/repos.yml
