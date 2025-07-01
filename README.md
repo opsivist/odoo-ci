@@ -2,7 +2,7 @@
 
 This Odoo image has the following characteristics:
 
-- Based on Ubuntu 22.04.
+- Based on Ubuntu 24.04.
 - Minimal dependencies to run Odoo CI jobs
 
   - git (with user.name=GitLab and user.email=gitlab@opsivist.io)
@@ -11,7 +11,7 @@ This Odoo image has the following characteristics:
   - openssh-client
   - rsync
   - make
-  - python3.8/3.9/3.10/3.11
+  - python3.8/3.9/3.10/3.11/3.12
   - virtualenv
   - postgresql client
   - lessc

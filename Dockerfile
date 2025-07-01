@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 # some environment variables
 ENV LANG=C.UTF-8 \
@@ -34,6 +34,9 @@ RUN set -x \
     python3.11 \
     python3.11-dev \
     python3.11-venv \
+    python3.12 \
+    python3.12-dev \
+    python3.12-venv \
     postgresql-client \
     # expect provides the unbuffer utility
     tcl \
@@ -50,8 +53,8 @@ RUN set -x \
     # gettext to manipulate .pot, .po files
     gettext \
   # wkhtmltopdf
-  && wget -q -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb \
-  && echo "ee88d74834bdec650f7432c7d3ef1c981e42ae7a762a75a01f7f5da59abc18d5 /tmp/wkhtmltox.deb" | sha256sum -c - \
+  && wget -q -O /tmp/wkhtmltox.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.jammy_amd64.deb \
+  && echo "4f723b2691ad8638a9df960e0421d346d7315083e3583a334f33362280ddba15 /tmp/wkhtmltox.deb" | sha256sum -c - \
   && apt-get -y install /tmp/wkhtmltox.deb \
   && rm -f /tmp/wkhtmltox.deb \
   # cleanup

@@ -5,13 +5,16 @@ on:
     branches:
       - 20.04
       - 22.04
+      - 24.04
     tags:
       - v20.04.20*
       - v22.04.20*
+      - v24.04.20*
   pull_request:
     branches:
       - 20.04
       - 22.04
+      - 24.04
 
 env:
   REGISTRY: ghcr.io
