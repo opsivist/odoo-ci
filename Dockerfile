@@ -86,8 +86,9 @@ ENV PIPX_HOME=/home/gitlab-runner/.local/pipx
 ENV PATH=/home/gitlab-runner/.local/bin:$PATH
 
 # set git user.name and user.email so the runner can git push
-RUN git config --global user.email "gitlab@opsivist.io" \
-  && git config --global user.name "GitLab"
+RUN git config --global user.email gitlab@opsivist.io \
+  && git config --global user.name GitLab \
+  && git config --global init.defaultBranch main
 
 # disable git safe repository detection, because GitLab CI checks out as root,
 # and we run as gitlab-runner
