@@ -39,6 +39,12 @@ RUN set -x \
     python3.12-venv \
     postgresql-client \
     libpq-dev \
+    libcairo2 \
+    libcairo2-dev \
+    libxml2-dev \
+    libxmlsec1-dev \
+    libxmlsec1-openssl \
+    pkg-config \
     # expect provides the unbuffer utility
     tcl \
     expect \
@@ -78,6 +84,9 @@ COPY git-wrapper /usr/local/bin/git
 
 # manifestoo
 RUN pipx install --pip-args="--no-cache-dir" "manifestoo>=0.4.0"
+
+# pip-split-requirements
+RUN pipx install --pip-args="--no-cache-dir" "pip-split-requirements>=0.7"
 
 # create gitlab-runner user, and do the rest of config using that user
 RUN useradd --shell /bin/bash -m gitlab-runner -c ""
