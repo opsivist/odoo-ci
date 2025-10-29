@@ -37,6 +37,9 @@ RUN set -x \
     python3.12 \
     python3.12-dev \
     python3.12-venv \
+    python3.13 \
+    python3.13-dev \
+    python3.13-venv \
     postgresql-client \
     libpq-dev \
     libcairo2 \
